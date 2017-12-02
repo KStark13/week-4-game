@@ -18,6 +18,7 @@ $ (document).ready(function(){
 //the crystal is clicked and the number is added to the total score
 //======================================================================================
 	var startGame = function () {
+		userScore = 0
 
 		crystal1 = Math.floor(Math.random() * 11) +1;
 		crystal2 = Math.floor(Math.random() * 11) +1;
@@ -29,7 +30,7 @@ $ (document).ready(function(){
 		$("#randomNumber").html("Random Number: " + randomNumber);
 	
 
-		userScore = 0
+		
 		console.log(randomNumber);
 		console.log(crystal1);
 		console.log(crystal2);
@@ -40,9 +41,11 @@ $ (document).ready(function(){
 
 startGame();
 
+//TOTAL SCORE- Each time a crystal is clicked, the number for that crystal should be added 
+//to the total score until it equals the random number and win or you go over the number and lose
 $("#bluecrystal").click(function(){
 	userScore = userScore + crystal1;
-	$("#userScore").html("Your total score is:" + userScore);
+	$("#userScore").html("Your total score is: " + userScore);
 	compare();
 });
 
@@ -64,9 +67,8 @@ $("#yellowcrystal").click(function(){
 	compare();
 });
 
-//TOTAL SCORE- Each time a crystal is clicked, the number for that crystal should be added 
-//to the total score until it equals the random number and win or you go over the number and lose
-	$("#userScore").html("Your total score is: " + userScore);
+
+
 
 //Every time you click a crystal, compare to the random score. 
 	//if the total score is equal to the randomNumber, YOU WIN
@@ -74,17 +76,19 @@ var compare = function(){
 
 	//If the total score is more than the randomNumber, YOU LOSE
 if(userScore > randomNumber) {
-	$("#alert").text("Sorry, you lost.");
+	alert("You lost.")
 	losses++
-	$("#losses").text(losses);
+	$("#losses").text("Losses: " + losses);
+	$("#userScore").text("Your total score is: " + 0);
 	startGame()
 }
 
 	//WINS AND LOSES- Each time the player wins or loses, log the score
 if(userScore === randomNumber) {
-	$("#alert").text("YOU WON!");
+	alert("YOU WON!!")
 	wins++
-	$("#wins").text(wins);
+	$("#wins").text("Wins: " + wins);
+	$("#userScore").text("Your total score is: " + 0);
 	startGame()
 }
 
